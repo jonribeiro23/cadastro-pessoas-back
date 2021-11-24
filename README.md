@@ -93,14 +93,14 @@
 
 
 <h3>"/get-users"</h3>
-<p>Esta rota retorna todos os usuário cadastrados.</p>
+<p>Esta rota retorna todos os usuário cadastrados em ordem decrescente de 'id'.</p>
 
 ```javascript
     {
         "success": true,
         "data": [
             {
-                "id": 1,
+                "id": 20,
                 "nome": "Fulano de Tal",
                 "email": "fulano@email.com",
                 "telefone": "9999999999",
@@ -109,7 +109,7 @@
             },
             ...
             {
-                "id": 20,
+                "id": 1,
                 "nome": "Beltrana Xpto",
                 "email": "beltrana@email.com",
                 "telefone": "12345678910",
