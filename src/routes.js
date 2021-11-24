@@ -4,7 +4,6 @@ const AdminController = require('./controllers/AdminController')
 const AuthMidleware = require('../midlewares/AuthMidleware')
 
 router.post('/', AdminController.login)
-router.post('/create-admin', AdminController.createAdmin)
 router.post('/create-user', AuthMidleware, UserControler.createUser)
 router.get('/get-users', AuthMidleware, UserControler.getUsers)
 

@@ -48,30 +48,5 @@ module.exports = {
             response.error.push(error)
             return res.status(500).json(response)
         }
-    },
-
-    async createAdmin(req, res) {
-        const response = {...responseModel}
-        let { email, password } = req.body
-        password = await bcrypt.hash(password, 8)
-
-        try {
-            const [, affectRows] = await connection.query(`
-            INSERT INTO admin VALUES (
-                DEFAULT, 
-                '${email}', 
-                '${password}', 
-                NOW(), 
-                NOW()
-            )
-        `)
-        response.success = affectRows > 0
-
-        return res.json(response)
-
-        } catch (error) {
-            response.error.push(error)
-            return res.status(500).json(response)
-        }
     }
 }
