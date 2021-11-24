@@ -18,7 +18,8 @@ module.exports = {
             sexo
         } = req.body
 
-        const [, affectRows] = await connection.query(`
+        try {
+            const [, affectRows] = await connection.query(`
             INSERT INTO users VALUES (
                 DEFAULT, 
                 '${nome}', 
@@ -32,8 +33,14 @@ module.exports = {
         `)
 
         response.success = affectRows > 0
+        response.data = "Usuário cadastrado com sucesso."
 
         return res.json(response)
+
+        } catch (error) {
+            response.error.push(error)
+            return res.json(response)
+        }
     },
 
     async getUsers(req, res) {
@@ -41,7 +48,7 @@ module.exports = {
 
         try {
             const [, data] = await connection.query(`
-            SELECT id, nome, email, telefone, dataNascimento, sexo FROM users
+            SELECT id, nome, email, telefone, dataNascimento, sexo FROM users ORDER BY id DESC
             `)
 
             response.success = true

@@ -22,6 +22,7 @@ module.exports = {
 
             if (data.length == 0) {
                 response.error.push("Email incorreto")
+                response.data = null
                 return res.status(401).json(response)
             }
             
